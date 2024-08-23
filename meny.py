@@ -1,3 +1,9 @@
+'''
+Først av alt viser dette programmet menyen til brukeren. 
+Basert på innspill fra brukeren godkjenner eller avviser 
+dette programmet brukerens valg ved hjelp av meldingene.
+'''
+
 print('---------------------------------------')
 
 print('                  Menu                   ')
@@ -21,6 +27,12 @@ hovedrett = input('velg en hovedrett: ')
 tilbehør = input('velg en tilbehør: ')
 
 print('---------------------------------------')
+
+'''
+videre, i koden, kontrolleres hver av betingelsene ved
+å bruke "if"-uttrykket og en melding sendes ut til brukeren
+basert på resultatet av sjekkene.
+'''
 
 if hovedrett != 'Salat' and tilbehør != 'Agurk':
     print('Du spiser ikke nok grønnsaker!')

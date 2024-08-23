@@ -1,3 +1,9 @@
+'''
+Først av alt viser dette programmet menyen til brukeren. 
+Basert på innspill fra brukeren godkjenner eller avviser 
+dette programmet brukerens valg ved hjelp av meldingene.
+'''
+
 print('---------------------------------------')
 
 print('                  Menu                   ')
@@ -21,6 +27,13 @@ hovedrett = input('velg en hovedrett: ')
 tilbehør = input('velg en tilbehør: ')
 
 print('---------------------------------------')
+
+'''
+Jeg bestemte meg for å forkorte koden ved å gjøre den mer kortfattet.
+Jeg legger alle «hvis»-uttrykkene i én konstruksjon.
+Siden det er nok at ett av uttrykkene er sant for å oppfylle programmets
+formål, er denne modellen passende.
+'''
 
 if hovedrett != 'Salat' and tilbehør != 'Agurk':
     print('Du spiser ikke nok grønnsaker!')
