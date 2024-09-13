@@ -320,7 +320,7 @@ else:
     drikke = 'brus'
 
 print("Hei ", navn, ", har du lyst på ", drikke, "?") 
-'''
+
 
 
 random_list = ['A', 'A', 'B', 'C', 'B', 'D', 'D', 'A', 'B']
@@ -343,8 +343,302 @@ for i in frequency:
 
 print(f'the most frequently used word: {wordWithHighetFrequency}')
 
+a = [1, 2, 3]
+b = [4, 5, 6]
 
+for i1, i2 in zip(a,b):
+    print(i1, i2)
+
+a = input("Tast inn et heltall! ")
+b = int(a)
+if b < 10:
+    print(b + "Hei!")
+
+snacks = ['snickers', 'mars', 'milkyway', 'twix', 'smash', 'lion']
+input = str(input('enter your favorite snack: ')).lower()
+
+if input in snacks:
+    print(f'recognized {input}')
+else:
+    print('I didnt get it :(')
     
+
+digitale_enheter = ["MacBook Pro 2021", "Samsung Galaxy 23", "MacBook Pro 2021", "iPhone 13", "Samsung Galaxy 23", "MacBook Pro 2021", "iPhone 15",  "Samsung Galaxy 23", "Samsung Galaxy 22", "MacBook Pro 2024"]
+
+digitale_enheter_2 = set(digitale_enheter)
+print(digitale_enheter_2)
+
+taco = {
+    'vegetables': ['salad', 'cucumber', 'tomato', 'paprika', 'jalapeno', 'corn', 'carrot', 'onion'],
+    'sauces': ['salsa', 'sour cream'],
+    'other ingredients': ['guacamole', 'beans', 'minced meat', 'tortilla']
+}
+
+user_input = str(input('five elements for your taco: ')).lower()
+user_input_list = user_input.split()
+vegetables = []
+sauces = []
+other_ingredients = []
+
+for item in user_input_list:
+    if item in taco['vegetables']:
+        vegetables.append(item)
+    elif item in taco['sauces']:
+        sauces.append(item)
+    else:
+        other_ingredients.append(item) 
+
+print(f'vegetables: {vegetables}, sauces: {sauces}, other ingredients: {other_ingredients}')
+
+
+
+persons = {
+}
+def registration():
+    ID = str(input('your ID please: '))
+    persons[ID] = str(input('enter your address/telefnumber/destination: ')).split()
+
+registration()
+registration()
+registration()
+registration()
+registration()
+
+print(persons)
+
+i = 1
+while i <= 10:
+   if i % 2 == 1:
+       i += 1
+       continue
+   print(f'{i} Hello world!')
+   i += 1
+
+for i in range(7):
+   print(i)
+
+counter = 0 
+sum = 0
+a = 1
+
+while counter < 100:
+    sum += a 
+    a += 1
+    counter += 1 
+
+print(sum)
+
+counter = 0 
+sum = 0
+
+while counter < 100:
+    counter += 1 
+    sum += counter 
+
+print(sum)
+
+counter = 0 
+sum = 0
+for i in range(100):
+    counter += 1 
+    sum += counter 
+
+print(sum)
+
+from random import randint
+
+digit = 0
+moreThan10 = 0
+while digit < 1000:
+    one = randint(1,6)
+    two = randint(1,6)
+    if one + two >= 10:
+        moreThan10 += 1
+    digit += 1
+
+print(f'{moreThan10 / 1000 * 100}')
+
+list = [12 , 16 , 5 , 16]
+
+for i in list:
+    
+    if i > 10 or i < 20:
+        innenfor = False
+
+assert innenfor == False
+print (innenfor)
+
+
+liste = ["Sauer", "er", "myke", "dyr."]
+i = 0
+while i < len(liste):
+    print(liste[i])
+    i += 1
+
+amountOfStars = 1
+
+for i in range(9):
+    print('*' * amountOfStars)
+    amountOfStars += 1
+
+o_liste = []
+
+for i in range(5):
+    o_liste.append('o')
+
+stjerneliste = []
+
+for i in range(5):
+    stjerneliste.append('*')
+
+rutenett = [o_liste, stjerneliste]
+rutenett.append(o_liste)
+
+for i in range(3):
+    print(rutenett[i])
+
+eksempel_3d_matrise = [
+    [[0, 1, 2], [3, 2, 1]], 
+    [[1, 1, 0], [4, 2, 3], [2, 1, 0]]
+    ]
+
+newList = []
+
+for i1 in eksempel_3d_matrise:
+    for i2 in i1:
+        for i3 in i2:
+            newList.append(i3)
+        
+print(newList)
+
+list = [6, -4, 7, -2, 8, -3, 9, -11]
+
+def minst():
+    smallest = 100
+    for i in list:
+        if i < smallest:
+            smallest = i
+    print(smallest)
+    
+
+def max():
+    biggest = 0
+    for i in list:
+        if i > biggest:
+            biggest = i
+    print(biggest)
+
+minst()
+max()
+
+list = [1, 2, 3, 4, 5]
+
+for i in range(len(list)):
+    list[i] = i ** 2
+    
+print(list)
+
+
+beholdning = {
+
+}
+
+fortsett = input("Ønsker du å fortsette (ja/nei)\n> ")
+while fortsett == "ja":
+    groennsak = input("Skriv inn en grønnsak:\n> ")
+    pris = input("Hvor mye koster " + "'" + groennsak + "'?\n> ")
+    if pris.isdigit():
+        beholdning[groennsak] = int(pris)
+        fortsett = input("Ønsker du å fortsette (ja/nei)\n> ")
+    else:
+        print("Ugyldig input: prisen må være et tall!")
+
+print("\nBeholdning:")
+for gs in beholdning:
+    print(gs, ":", beholdning[gs], "NOK")
+
+
+tall = int(input('skriv en tall: '))
+binærtall = []
+
+while tall >= 1:
+    firstAction = tall % 2 
+    if firstAction != 0:
+        binærtall.append(1)
+    else:
+        binærtall.append(0)
+    tall = tall // 2
+
+print(binærtall)
+
+i = int(input("Tast inn et tall: "))
+
+while i != 0:
+    print(i%2)
+    i = i//2  
+
+personer = {
+
+}
+
+fortsett = input("Ønsker du å fortsette? (j/n)\n> ")
+
+while fortsett == 'j':
+    navn = str(input('skriv navnet ditt: \n> '))
+    alder = int(input('skriv alder din: \n> '))
+    personer[navn] = alder
+    fortsett = input("Ønsker du å fortsette? (j/n)\n> ")
+
+print(personer)
+
+letter = str(input('skriv en bokstav: \n> '))
+
+while len(letter) == 1:
+    for i in personer:
+        if i[0] == letter:
+            print(f'name: {i} \nage: {personer[i]}')
+    letter = str(input('skriv en bokstav: \n> '))
+
+
+tegnliste = ['h', 'e', 'i', ',', ' ', 'd', 'u', '!',]
+
+setningen = ''
+for i in tegnliste:
+    setningen+=i
+print(setningen)
+
+tegnliste = {'h', 'e', 'i', ',', ' ', 'd', 'u', '!',}
+
+setningen = ''
+for i in tegnliste:
+    setningen+=i
+print(setningen)
+'''
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     
