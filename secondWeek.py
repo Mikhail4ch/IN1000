@@ -1,3 +1,4 @@
+
 password = int(input('What is the password? '))
 
 if password == 1234:

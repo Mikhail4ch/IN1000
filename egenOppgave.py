@@ -61,3 +61,9 @@ while i < riktigSvar:
    i += 1
    amountOfStars += 2
    amountOfSpaces -= 1
+
+
+
+\[ \begin{array}{|c|c|c|c|} \hline P & \neg \neg P & (\neg \neg P \to P) \\ \hline 1 & 1 & 1   \textcolor{blue}{1}   1 \\ 1 & 0 & 1   \textcolor{blue}{0}   0 \\ 0 & 1 & 0   \textcolor{blue}{1}   1 \\ 0 & 0 & 0   \textcolor{blue}{1}   0 \\ \hline \end{array} \] \vspace{1cm}
+\[ \begin{array}{|c|c|c|c|} \hline P & Q & \neg(P \to (Q \lor  P)) \\ \hline 1 & 1 & \textcolor{blue}{0}  1   1   1 \\ 1 & 0 & \textcolor{blue}{0}  1   1   1 \\ 0 & 1 & \textcolor{blue}{0}  0   1   1 \\ 0 & 0 & \textcolor{blue}{0}  0   1   0 \\ \hline \end{array} \] \vspace{1cm}
+\[ \begin{array}{|c|c|c|c|} \hline P & Q & R & (P \land (Q \lor R)) \to (P \lor (Q \land R )) \\ \hline 1 & 1 & 1 & 1  1  \textcolor{blue}{1}  1  1 \\ 1 & 1 & 0 & 1  1 \textcolor{blue}{1} 1  0 \\ 1 & 0 & 1 & 1  1  \textcolor{blue}{1}  1   0 \\ 1 & 0 & 0 & 0  0  \textcolor{blue}{1}  1   0 \\ 0 & 1 & 1 & 0  1  \textcolor{blue}{1}  1   1 \\ 0 & 1 & 0 & 0  1  \textcolor{blue}{1}  0   0 \\ 0 & 0 & 1 & 0  1  \textcolor{blue}1  0   0 \\ 0 & 0 & 0 & 0  0  \textcolor{blue}{1}  0   0 \\ \hline \end{array} \] \vspace{1cm}

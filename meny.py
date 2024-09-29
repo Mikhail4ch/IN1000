@@ -29,7 +29,7 @@ tilbehør = input('velg en tilbehør: ')
 print('---------------------------------------')
 
 '''
-videre, i koden, kontrolleres hver av betingelsene ved
+Videre, i koden, kontrolleres hver av betingelsene ved
 å bruke "if"-uttrykket og en melding sendes ut til brukeren
 basert på resultatet av sjekkene.
 '''

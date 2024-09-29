@@ -1,0 +1,10 @@
+Skulderbredde 4
+Halsvidde 3.2
+Livvidde 10
+Brystvidde 1.5
+Hoftemål 3
+Armlengde 5.3
+Rygglengde 8
+Overarmsomkrets 2.2
+Håndleddvidde 1.1
+Innersøm 0.53

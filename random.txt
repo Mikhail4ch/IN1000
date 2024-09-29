@@ -1,0 +1,8 @@
+I denne oppgave skal 
+du lage et program 
+som tar inn en tekst 
+og skriver den ut til
+en fil. I utdatafilen
+er det maksimalt 
+antall tegn som er 
+tillatt per linje. 
