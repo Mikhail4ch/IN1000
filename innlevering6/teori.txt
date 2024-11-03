@@ -1,0 +1,14 @@
+1. Dette er en kombinasjon av data og metoder som fungerer med 
+ disse dataene til ett enkelt objekt. Det er nyttig fordi dette lar 
+ oss skjule detaljene i implementeringen og gi et grensesnitt 
+ for samhandling med objektet.
+
+2. Et klassegrensesnitt er en samling metoder som et klassen gir, tilbyr oss for bruk. Mens implementeringen 
+ er de underliggende detaljene som får klassen til å fungere. Et 
+ godt grensesnitt skjuler kompleksiteten i implementeringen og gjør 
+ klassen enkel å bruke.
+
+ 3. En instansmetode er en slags 'funksjon' som fungerer med en klasseinstans
+ og har tilgang til dens attributter. Metode i en klasse blir en forekomstmetode som standard.
+ Metoder er knyttet til objekter eller klasser og trenger et klasseforekomst for å bli påkalt
+ mend funksjoner er uavhengige kodeblokker som kan kalles opp fra hvor som helst.

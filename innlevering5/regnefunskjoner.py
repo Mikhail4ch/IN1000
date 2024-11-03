@@ -49,8 +49,8 @@ print()
 
 def skriv_beregninger():
     print('Utregninger:')
-    tall1 = int(input('Skriv inn tall 1: '))
-    tall2 = int(input('Skriv inn tall 2: '))
+    tall1 = float(input('Skriv inn tall 1: '))
+    tall2 = float(input('Skriv inn tall 2: '))
     print()
     adisjonResult = adisjon(tall1, tall2)
     subtraksjonResult = subtraksjon(tall1, tall2)
@@ -60,7 +60,7 @@ def skriv_beregninger():
     print(f'Resultat av divisjon: {divisjonResult}')
     print()
     print('Konvertering fra tommer til cm:')
-    antall_tommer = int(input('Skriv inn et tall: '))
+    antall_tommer = float(input('Skriv inn et tall: '))
     centimeterResult = tommer_til_cm(antall_tommer)
     print(f'Resultat: {centimeterResult}')
 

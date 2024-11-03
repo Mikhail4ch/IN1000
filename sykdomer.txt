@@ -1,0 +1,5 @@
+5,pest
+17,pest
+13,kolera
+14,kolera
+28,pest

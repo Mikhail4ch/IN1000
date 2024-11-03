@@ -1,0 +1,12 @@
+b. Hvis man for eksempel vil last en ny fil med filmer, men ikke ønsker å lage 
+et nytt objekt, er det mer fornuftig å bruke klassemetoden for å laste filen 
+i stedet for å gjøre det i konstruktøren. I tillegg, hvis man ønsker å laste 
+filen senere ikke umiddelbart på tidspunktet for objektoppretting, er det mer 
+rimelig å bruke klassemetoden også. Til slutt, ved å ikke laste inn filen i konstruktøren
+får man bedre kontroll over objektet og fleksibilitet
+
+c. Det er naturlig å velge str eller string typen. Det kan være nyttig hvis man vil 
+håndtere årsintervaller (2000-2002) i stedet for bare år og det virker ganske naturlig for 
+filmer. Når det gjelder vanskeligheter, str typen kan gjøre det vanskeligere å sammenligne
+filmer årstall, for eskempel. I dette tilfellet må man endre datatypen til int i 
+klassemetoden og først deretter sammenligne forskjellige årstaller

@@ -11,13 +11,12 @@ def maxPerMonth(filnavn):
         ordbok[kolloner[0]] = kolloner[1]
     return ordbok
 
-# temperaturene fra begge filene må ha flytetypen bare da vil sammenligningen være riktig
-
 def rekordTemp(ordbok, filnavn):
     fil = open(filnavn)
     for linje in fil:
         kolloner = linje.split()
         for key in ordbok:
+# temperaturene fra begge filene må ha flytetypen bare da vil sammenligningen være riktig
             if kolloner[0] == key and float(ordbok[key]) < float(kolloner[2]):
                 print(f'Ny varmerekord på {kolloner[1]} {kolloner[0]}: {kolloner[2]} grader celcius (gammel varmerekord var {ordbok[key]} grader celcius)')
                 print()
@@ -25,7 +24,7 @@ def rekordTemp(ordbok, filnavn):
     return ordbok
 
 # first, the initial list with records is displayed on the screen,
-#  then examples of cases when the temperature in 2018 was higher 
+# then examples of cases when the temperature in 2018 was higher 
 # and finally the final dictionary with changed record values
 
 resultatet = maxPerMonth('maxPerMonth.csv')
