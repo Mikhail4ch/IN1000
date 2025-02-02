@@ -19,7 +19,7 @@ public class Rutenett {
 
     public void fyllMedTilfeldigeCeller () {
         for (int i = 0; i < this.antRader; i++) {
-            for (int k = 0; i < this.antKolonner; k++) {
+            for (int k = 0; k < this.antKolonner; k++) {
                 this.rutene[i][k] = this.lagCelle();
             }
         }
