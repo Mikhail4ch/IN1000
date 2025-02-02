@@ -23,8 +23,7 @@ class Celle:
     def hent_status_tegn(self):
         if self.er_levende():
             return 'O'
-        else:
-            return '.'
+        return '.'
 #legger til et element (nabocelle) i listen self._naboer
     def legg_til_nabo(self, nabo):
         self._naboer.append(nabo)
@@ -38,12 +37,21 @@ class Celle:
         return self._ant_levende_naboer
 #oppdater status av celle baser på antall 'levende' naboceller
     def oppdater_status(self):
-        if self._ant_levende_naboer < 2 or self._ant_levende_naboer > 3:
-            self.sett_doed()
-            return self._status
+    # Ensure the neighbor count is updated before making a decision.
+    # Optionally, call self.tell_levende_naboer() here if not done elsewhere.
+        if self.er_levende():
+            # For a live cell, it remains alive if it has 2 or 3 live neighbors.
+            if self._ant_levende_naboer < 2 or self._ant_levende_naboer > 3:
+                self.sett_doed()
+            else:
+                self.sett_levende()
         else:
-            self.sett_levende()
-            return self._status
+            # For a dead cell, it becomes alive only if it has exactly 3 live neighbors.
+            if self._ant_levende_naboer == 3:
+                self.sett_levende()
+            else:
+                self.sett_doed()
+        return self._status
 
 
     

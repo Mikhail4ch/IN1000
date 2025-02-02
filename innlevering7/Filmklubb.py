@@ -25,6 +25,7 @@ class Filmklubb:
         for linje in fil:
             kolloner = linje.strip().split(';')
             self.filmer.append(Film(kolloner[0],int(kolloner[1])))
+        fil.close()
 
 # denne metoden bare skriver ut alle objektene fra self.filmer-listen ved å 
 # bruke __str__ magisk metode som klassen Film inneholder 
@@ -59,8 +60,7 @@ class Filmklubb:
         for film in self.filmer:
             if film.sjekk_tittel(tittel):
                 return film
-        else:
-            return None
+        return None
 
 # legg_til_skuespiller metoden får navnet på filmen som en parameter for 
 # å finne filmen fra listen self.filmer ved å bruke finn_film_tittel metoden.
@@ -93,6 +93,7 @@ class Filmklubb:
         for film in self.filmer:
             if film.sjekk_periode(int(år_1), int(år_2)):
                 liste1.append(film)
+        #return liste1
 # Siden jeg ønsker å returnere listen med filmer på en lesbar måte, har jeg laget en liste 
 # til som ikke inneholder lenker (adresse) til FIlm-objekter, men strengrepresentasjon av disse objektene
         liste2 = []

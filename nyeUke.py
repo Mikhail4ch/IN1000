@@ -2424,42 +2424,6 @@ katalog.skriv_sykdoms_treff()
 
 
 
-class Gruppe:
-    def __init__(self, kraver:list) -> None:
-        self._kraver = kraver
-        self._gruppe = []
-    def legg_til_personer(self, personer:list):
-        self._gruppe.extend(personer)
-    def hent_personer(self):
-        return self._gruppe
-    def hent_krav(self):
-        return self._kraver
-
-class Rom:
-    def __init__(self, romnummer:int, antallSenger:int,fasiliteter:list) -> None:
-        self._romnummer = romnummer
-        self._antallSenger = antallSenger
-        self._fasiliteter = fasiliteter
-        self._rommetLegig = True
-        self._gjesterNavner = []
-    def reserver(self, navner:list):
-        if self._rommetLegig == True:
-            self._rommetLegig = False
-            self._gjesterNavner = navner
-        else:
-            print('rommet er opptat')
-    def hent_ant_senger(self):
-        return self._antallSenger
-    def passer(self, kraver:list):
-        for krav in kraver:
-            if krav not in self._fasiliteter:
-                return False
-        return True
-    def __str__(self) -> str:
-        fasiliteter_str = ", ".join(self._fasiliteter)
-        return f"Rom {self._romnummer} med {self._antallSenger} senger og fasiliteter: {fasiliteter_str}"
-
-
 class TreNode:
     def __init__(self,heltall:int) -> None:
         self._verdi = heltall
@@ -2542,7 +2506,7 @@ object1 = Brev('Mikhail','Lihail')
 object1.skriv_linje('eth to the moon')
 object1.skriv_linje('bull run very soon')
 object1.les_brev()
-'''
+
 
 class Bil:
     def __init__(self, farge, merke):
@@ -2605,6 +2569,938 @@ levi.lei_bil(gunnar)
 gunnar.biler()
 ivar.biler()
 levi.biler()
+
+class Gruppe:
+    def __init__(self, kraver:list) -> None:
+        self._kraver = kraver
+        self._gruppe = []
+    def legg_til_personer(self, personer:list):
+        self._gruppe.extend(personer)
+    def hent_personer(self):
+        return self._gruppe
+    def hent_krav(self):
+        return self._kraver
+
+class Rom:
+    def __init__(self, romnummer:int, antallSenger:int,fasiliteter:list) -> None:
+        self._romnummer = romnummer
+        self._antallSenger = antallSenger
+        self._fasiliteter = fasiliteter
+        self._rommetLegig = True
+        self._gjesterNavner = []
+    def reserver(self, navner:list):
+        if self._rommetLegig == True:
+            self._rommetLegig = False
+            self._gjesterNavner = navner
+        else:
+            print('rommet er opptat')
+    def hent_ant_senger(self):
+        return self._antallSenger
+    def passer(self, kraver:list):
+        if self._rommetLegig == True:
+            for krav in kraver:
+                if krav not in self._fasiliteter:
+                    return False
+            return True
+    def __str__(self) -> str:
+        fasiliteter_str = ", ".join(self._fasiliteter)
+        return f"Rom {self._romnummer} har {self._antallSenger} senger og fasiliteter: {fasiliteter_str}"
+    
+class Hotell:
+    def __init__(self, hotellnavn):
+        self._hotellnavn = hotellnavn
+        self._rommene = self.les_rom_informasjon(self._hotellnavn)
+    def les_rom_informasjon(self, hotellnavn):
+        rom_ordbok = {}
+        fil = open(hotellnavn + '.txt')
+        for linje in fil:
+            deler = linje.strip().split()
+            romnr = int(deler.pop(0))
+            ant_senger = int(deler.pop(0))
+            fasiliteter = deler
+            rom_ordbok[romnr] = Rom(romnr, ant_senger, fasiliteter)
+        fil.close()
+        return rom_ordbok
+    def reserver_rom(self, romnummer:int, navner:list):
+        self._rommene[romnummer].reserver(navner) 
+    def finn_passende_rom(self,kraver:list):
+        passende_rom = []
+        for rom in self._rommene.values():
+            if rom.passer(kraver) == True:
+                passende_rom.append(rom)
+        return passende_rom
+
+class Reservasjonsystem():
+    def __init__(self, hotelnavner:list):
+        self._hoteller = self.ordbok_oppretelse(hotelnavner)
+    def ordbok_oppretelse(self, hotelnavner):
+        ordbok = {}
+        for hotelnavn in hotelnavner:
+            ordbok[hotelnavn] = Hotell(hotelnavn)
+        return ordbok
+    def reserver_rom_i_hotell(self,hotelnavn,romnr,gjester):
+        self._hoteller[hotelnavn].reserver_rom(romnr,gjester)
+    def _finn_alle_passende_rom(self,krav):
+        passende_rom = {}
+        for hotelnavn in self._hoteller:
+            rom_liste = self._hoteller[hotelnavn].finn_passende_rom(krav)
+            if len(rom_liste) > 0:
+                passende_rom[hotelnavn] = rom_liste
+        return passende_rom
+    def gruppe_reservasjon(self, gruppe):
+        personer = gruppe.hent_personer()
+        krav = gruppe.hent_krav()
+        passende_rom = self._finn_alle_passende_rom(krav)
+
+        if len(passende_rom) == 0:
+            return ['Ingen passende rom']
+        
+        bekreftelse = ["Bekreftelse på bestilling", "Reserverte rom:"]
+
+        for hotellnavn in passende_rom:
+            for rom in passende_rom[hotellnavn]:
+                gjester = []
+                while len(personer) > 0 and len(gjester) < rom.hent_ant_senger():
+                    gjester.append(personer.pop(0))
+                rom.reserver(gjester)
+                bekreftelse.append(f'{hotellnavn}: {rom}\nGjester: {gjester} \n')
+
+                if len(personer) == 0:
+                    return bekreftelse
+                
+        ant_mangler = len(personer)
+        bekreftelse.append(f'NB: Mangler rom til {ant_mangler} personer: {personer}')
+        return bekreftelse
+    
+# Grensesnittet til klassen reservasjon bestar av to metoder:
+#   reserver_rom_i_hotell() med parameter krav (liste av strenger)
+#   gruppe_reservasjon() med parameter gruppe (referanse til Gruppe-objekt)
+#                        som returnerer en bekreftelse (liste av strenger)
+
+class Node :
+    def __init__(self, nytt) :
+        self._innhold = nytt
+        self._neste = None
+
+    def ny_etterfølger (self, ny) :
+        self._neste = ny
+
+    def hent_neste (self) :
+        return self._neste
+
+    def hent_innhold(self):
+        return self._innhold
+    
+# legger inn noder i listen
+startnode = Node("0")
+tmp = startnode # "temporary", nåværende Node
+for tall in range(1,5):
+    tmp.ny_etterfølger(Node(str(tall)))
+    tmp = tmp.hent_neste()
+
+# skriver ut innholdet i alle nodene  
+tmp = startnode
+while tmp is not None:
+    print(tmp.hent_innhold())
+    tmp = tmp.hent_neste()
+
+tmp = startnode                      # Vi antar minst en node
+if tmp.hent_neste() is not None:     # sjekker om kun én
+    while tmp.hent_neste().hent_neste() is not None:
+       tmp = tmp.hent_neste()
+tmp.ny_etterfølger(Node("Ny sistenode"))
+
+def sjekk_om_fyord(setning, fyord, synonym_liste):
+    for ord in setning.split():
+        if ord == fyord:
+            return True
+        for liste in synonym_liste:
+            if ord in liste and fyord in liste:
+                return True
+    return False
+
+print(sjekk_om_fyord("spis masse godsaker", "snop",
+[["saft","lemonade"],["snacks","snop","godsaker"],["mye","masse"]]))
+print()
+print(sjekk_om_fyord("spis masse godsaker", "lemonade", [["saft","lemonade"],
+["snacks","snop","godsaker"],["mye","masse"]]))
+
+
+class Emne:
+    def __init__(self,emnekode:str, studenter:dict, rettere:list):
+        self._emnekode = emnekode
+        self._studenter = studenter
+        self._rettere = rettere
+        self._obliger = {}
+    def administrer(self):
+        print ("Behandler emnet " + self._emnekode + ". Lovlige kommandoer:")
+        print('O: Ny oblig\nF: Frist ute, start retting\nL: Lag eksamenliste\nA: Avslutt')
+        print()
+        brukerInput = str(input('Gi kommando\n< ')).strip().upper()
+        while brukerInput != 'A':
+            if brukerInput.strip().upper() == 'O':
+                self._opprettOblig()
+            elif brukerInput.strip().upper() == 'F':
+                self._startRetting()
+            elif brukerInput.strip().upper() == 'L':
+                self._skrivEksamensListe()
+            else:
+                print("Ukjent kommando.")
+                print()
+                print("Behandler emnet " + self._emnekode + ". Lovlige kommandoer:")
+                print('O: Ny oblig\nF: Frist ute, start retting\nL: Lag eksamenliste\nA: Avslutt')
+                print()
+                brukerInput = str(input('Gi kommando\n< ')).strip().upper()
+    def _opprettOblig(self):
+        obligId = "oblig" + str(len(self._obliger)+1)
+        frist = str(input('oppgi frist for oblig\n< '))
+        self._obliger[obligId] = Oblig(obligId, frist)
+    def _startRetting(self):
+        dato = str(input('hva er idags datoen?\n< '))
+        for obligId in self._obliger:
+            oblig = self._obliger[obligId]
+            if oblig.klarForRetting(dato) == True:
+                besvarelser = oblig.hentBesvarelser()
+                resultater = oblig.fordelRetting(besvarelser,self._rettere)
+                for sBruker in resultater:
+                    stud = self._studenter[sBruker]
+                    res = resultater[sBruker]
+                    stud.registrer(obligId, res)
+    def _skrivEksamensListe(self):
+        liste = []
+        for studentId in self._studenter:
+            student = self._studenter[studentId]
+            if student.altGodkjent(len(self._obliger)):
+                liste.append(studentId)
+        print("Eksamensliste for emnet "+self._emnekode+":")
+        for sBruker in liste:
+            print(sBruker)
+        
+class Student:
+    def __init__(self, brukernavn:str, fulltnavn:str):
+        self._brukernavn = brukernavn
+        self._fulltnavn = fulltnavn
+        self._resultater = {}
+    def registrer (self,obligId:str,resultat:int):
+        self._resultater[obligId] = resultat
+    def altGodkjent(self, antOblig:int):
+        if antOblig > len(self._resultater):
+            return False
+        for obl in self._resultater:
+            if self._resultater[obl] != 1:
+                return False
+        return True
+
+class Retter:
+    def __init__(self, rett_brukernavn):
+        self._rettbrukernavn = rett_brukernavn
+    def vurder(self, filnavn):
+        return 1
+
+class Oblig:
+    def __init__(self, obligenId, leveringsfrist):
+        self._obligId = obligenId
+        self._leveringsfrist = leveringsfrist
+        self._rettetStatus = False
+    def klarForRetting(self, dato):
+        #return dagensDato > self._frist and not self._rettet
+        if self._leveringsfrist < dato and self._rettetStatus == False:
+            return True
+        else:
+            return False
+    def hentBesvarelser(self):
+        ordbok = {}
+        filnavn = self._obligId + ".txt"
+        fil = open(filnavn)
+        for linje in fil:
+            biter = linje.strip().split()
+            if len(biter > 1):
+                ordbok[biter[0]] = biter[1]
+        fil.close()
+        return ordbok
+    def fordelRetting(self, ordbok, rettere):
+        resultater = {} 
+        antR = len(rettere)
+        rNr = 0
+        for sBruker in ordbok:
+            retter = Retter(rettere[rNr])
+            res = retter.vurder(ordbok[sBruker])
+            resultater[sBruker] = res
+            rNr += 1
+            if rNr == antR:
+                rNr = 0
+
+        self._rettetStatus = True
+        return resultater
+
+
+def badmington(per_vil, palle_vil, espen_vil):
+    return per_vil and palle_vil and not espen_vil or per_vil and espen_vil and not palle_vil or palle_vil and espen_vil and not per_vil
+
+print(badmington(True,True,False))
+
+
+def heie(tabellplass_ordbok):
+    if tabellplass_ordbok['Brann'] <= 3:
+        return 'Brann'
+    else:
+        for key in tabellplass_ordbok:
+            if tabellplass_ordbok[key] == 1:
+                return key 
+
+
+def bordsetting(introverte, ekstroverte):
+    liste = []
+    index = 0
+    for i in range(len(introverte)):
+        liste.append(introverte[index])
+        liste.append(ekstroverte[index])
+        index+=1
+    return liste
+
+print(bordsetting(["Per","Palle","Espen"], ["Putti", "Plutti", "Pott"]))
+
+
+def lag_interessegrupper(personers_interesse):
+    tom_ordbok = {}
+    for persjon in personers_interesse:
+        if personers_interesse[persjon] in tom_ordbok:
+            tom_ordbok[personers_interesse[persjon]].append(persjon)
+        else:
+            tom_ordbok[personers_interesse[persjon]] = [persjon]
+    return tom_ordbok
+
+
+print(lag_interessegrupper({"Per":"Mat","Palle":"Film","Espen":"Mat","Misha":"Film" }))
+
+def stigespill(terningkast:list, stiger:dict):
+    position = 0
+    for i in terningkast:
+        position += i
+        if position in stiger:
+            position = stiger[position]
+    return position
+
+print(stigespill([5,4,2,2],{5:12,18:7}))
+
+def hvilke_tre_kast(slutt_rute, stiger):
+    muligheter = []
+    for t1 in range(1,7):
+        for t2 in range(1,7):
+            for t3 in range(1,7):
+                mulighet = [t1,t2,t3]
+                if stigespill(mulighet, stiger) == slutt_rute:
+                    muligheter.append(mulighet)
+    return muligheter
+
+print(hvilke_tre_kast(5, {3:15, 17:4}))
+
+
+class Gruppe:
+    def __init__(self, kraver:list):
+        self._kraver = kraver
+        self._gruppe = []
+    def legg_til_personer(self,personner:list):
+        for person in personner:
+            self._gruppe.append(person)
+    def hent_personer(self):
+        return self._gruppe
+    def hent_krav(self):
+        return self._kraver
+
+class Rom:
+    def __init__(self, romnummer, antall_senger, fasiliteter):
+        self._romnummer = romnummer
+        self._antall_senger = antall_senger
+        self._fasiliteter = fasiliteter
+        self._gjester = []
+    def reserver(self, gjester:list):
+        self._gjester = gjester
+    def hent_ant_senger(self):
+        return self._antall_senger
+    def passer(self, kraver):
+        if len(self._gjester) > 0: 
+            return False
+        for krav in kraver:
+            if krav not in self._fasiliteter:
+                return False  
+        return True
+    def __str__(self):
+        return f'Hotell rommet nummer {self._romnummer} består av {self._antall_senger} senger og {self._fasiliteter}'
+
+class Hotell:
+    def __init__(self, hotellnavnet):
+        self._hotellnavnet = hotellnavnet
+        self._hotellrom = self.lesinformasjon(hotellnavnet)
+    
+    def lesinformasjon(hotellnavnet):
+        ordbok = {}
+        fil = open(hotellnavnet + ".txt")
+        for linje in fil:
+            biter = linje.strip().split()
+            romnr = int(biter.pop(0))                                   # Bruker pop() som fjerner og returnerer element på gitt indeks (her første element)
+            ant_senger = int(biter.pop(0))                              # Samme som over, igjen første element siden romnr ble fjernet
+            fasiliteter = biter                                         # Resten av deler-listen vil være eventuelle fasiliteter
+            ordbok[romnr] = Rom(romnr, ant_senger, fasiliteter)
+        fil.close()                                                     # Husk å lukke fil:)
+        return ordbok
+    def reserver_rom(self, romnummer, navner):
+        self._hotellrom[romnummer].reserver(navner)
+    def finn_passende_rom(self,krav):
+        passende_rommer = []
+        for rom in self._hotellrom.values():
+            if rom.passer(krav):
+                passende_rommer.append(self._hotellrom[rom])
+        return passende_rommer
+class Reservasjonssystem:
+    def __init__(self, hotellnavner:list):
+        self._hoteller = {}
+        for hotellnavn in hotellnavner:
+            self._hoteller[hotellnavn] = Hotell(hotellnavn)
+    def reserver_rom_i_hotell(self, hotellnavn, romnummer, gjester):
+        self._hoteller[hotellnavn].reserver_rom(romnummer, gjester)
+    def _finn_alle_passende_rom(self, fasiliteter):
+        ordbok = {}
+        for key,value in self._hoteller.items():
+            rom_liste = value.finn_passende_rom(fasiliteter)
+            if len(rom_liste) > 0:
+                ordbok[key] = rom_liste
+        return ordbok
+    def gruppe_reservasjon(self, Gruppe):
+        personner = Gruppe.hent_personer()
+        kraver = Gruppe.hent_krav()
+        passende_rom = self._finn_alle_passende_rom(kraver)
+        if len(passende_rom) == 0:
+            return ["Ingen passende rom"]
+
+        bekreftelse = ["Bekreftelse på bestilling", "Reserverte rom:"]
+
+        for hotellnavn,rommeListe in passende_rom.items():
+            for rom in rommeListe:
+                gjester = []
+                while len(personner) > 0 and len(gjester) < rom.hent_ant_senger():
+                    gjester.append(personner.pop(0))
+                rom.reserver(gjester)
+                bekreftelse.append(f"{hotellnavn}: {rom} \nGjester: {gjester} \n")
+
+                if len(personner) == 0:
+                    return bekreftelse
+
+            ant_mangler = len(personner)
+            bekreftelse.append(f"NB: Mangler rom til {ant_mangler} personer: {personner}")
+            return bekreftelse
+
+# Grensesnittet til klassen reservasjon bestar av to metoder:
+#   reserver_rom_i_hotell() med parameter krav (liste av strenger)
+#   gruppe_reservasjon() med parameter gruppe (referanse til Gruppe-objekt)
+#                        som returnerer en bekreftelse (liste av strenger)
+
+
+def karantene(vaksinert, farge):
+    if not vaksinert:
+        if farge == 'groenn':
+            return 3
+        elif farge == 'roed' or 'oransje':
+            return 10 
+    else:
+        return 0
+
+assert karantene(True, "roed") == 0
+assert karantene(False, "oransje") == 10
+
+
+def tell_grader(fag, bsc, msc):
+    if fag != bsc and fag != msc:
+        return 0
+    elif fag == bsc and fag == msc:
+        return 2 
+    else:
+        return 1
+
+assert tell_grader("informatikk", "informatikk", "informatikk") == 2
+assert tell_grader("historie", "informatikk", "informatikk") == 0
+assert tell_grader("historie", "historie", "informatikk") == 1
+
+
+def fjern_vokaler(setning, vokal_liste):
+    ny_setning = ''
+    for bokstav in setning:
+        if bokstav not in vokal_liste:
+            ny_setning += bokstav
+    return ny_setning
+
+print(fjern_vokaler("ha det fint", ["a", "e", "i", "o", "u"]))
+assert fjern_vokaler("ha det fint", ["a", "e", "i", "o", "u"]) == 'h dt fnt'
+
+def summer_rabatt(vareliste:list, forpris:dict, nypris:dict):
+    rabbaten = 0
+    for varen in forpris:
+        rabbaten += forpris[varen]
+    for varen in nypris:
+        rabbaten -= nypris[varen]
+    return rabbaten
+    
+print(summer_rabatt(["laptop", "ryggsekk"], {"laptop":5000, "ryggsekk":900},
+{"laptop":4000, "ryggsekk":600}))
+assert summer_rabatt(["laptop", "ryggsekk"], {"laptop":5000, "ryggsekk":900}, {"laptop":4000, "ryggsekk":600}) == 1300
+
+
+def sjekk_reise(reise: list) -> bool:
+    # Iterate through consecutive pairs of journeys in reise
+    for i in range(len(reise) - 1):
+        # Check if the destination of the current journey matches the origin of the next
+        if reise[i][1] != reise[i + 1][0]:
+            return False
+    return True
+
+# Example usage
+print(sjekk_reise([["Spania", "Frankrike"], ["Frankrike", "Norge"]]))  # Should return True
+print(sjekk_reise([["Spania", "Frankrike"], ["Norge", "Sverige"]]))  # Should return False
+
+
+class Onske:
+    def __init__(self, beskrivelse, antall, minimumspris):
+        self._beskrivelse = beskrivelse
+        self._antall = antall
+        self._minimumspris = minimumspris
+    def passer(self, maksimumspris): 
+        if self._minimumspris > maksimumspris or self._antall == 0:
+            return False
+        return True
+    def valgt(self):
+        self._antall - 1
+        return self._beskrivelse
+    def __str__(self):
+        return f'onske beskrivelse er: {self._beskrivelse} og minimumspris er: {self._minimumspris}'
+
+class Onskeliste:
+    def __init__(self):
+        self._onskelisten = []
+    def nytt_onske(self, beskrivelse, antall, minimumspris):
+        nytt = Onske(beskrivelse, antall, minimumspris)
+        self._onskelisten.append(nytt)
+    def hent_onsker(self,maksimumspris):
+        liste = []
+        for onske in self._onskelisten:
+            if onske.passer(maksimumspris):
+                liste.append(str(onske))
+            else:
+                liste.append('Ikke valgbart onske')
+        return liste
+    def onske_oppfylles(self, onske:int):
+        return self._onskelisten[onske].valgt()
+
+class Gave:
+    def __init__(self, beskrivelse, giver):
+        self._beskrivelse = beskrivelse
+        self._giver = giver
+    def __str__(self):
+        return f'denne gaven er {self._beskrivelse} fra {self._giver}'
+    
+class Juleferiekalender:
+    def __init__(self, antall_dager):
+        self._ordbok = {}
+        dag_nr = 25
+        for teller in range(antall_dager):
+            self._ordbok[dag_nr] = None
+            dag_nr += 1
+            if dag_nr == 32:
+                dag_nr = 1
+    def ny_gave(self, beskrivelse, giver, dagen):
+        self._ordbok[dagen] = Gave(beskrivelse, giver)
+    def hent_dagens_gave(self, dagnummer):
+        teksten = ". desember: "
+        if dagnummer < 25:
+            teksten = ". januar: "
+        if dagnummer in self._ordbok:
+            teksten += str(self._ordbok[dagnummer])
+            return str(dagnummer) + teksten
+        else:
+            return 'det ikke ligger noen gave i kalenderen for denne dagen'
+    def hent_ant_dager(self):
+        return len(self._ordbok)
+
+class Julegavefikser:
+    def __init__(self, antall_dager):
+        self._juleferiekalender = Juleferiekalender(antall_dager)
+        self._onskeliste = Onskeliste()
+        self._neste_dag = 25
+    def les_onsker_fra_fil(self, filnavn):
+        fil = open(filnavn)
+        for linje in fil:
+            deler = linje.strip().split(';')
+            self._onskeliste.nytt_onske(deler[0],deler[1],deler[2])
+        fil.close()
+    def velg_gave(self, giver):
+        max_pris = int(input("\nHva er hoyeste pris du vil betale? "))
+        meny = self._onskeliste.hent_onsker(max_pris)
+        onske_nr = 0
+        for onske in meny:
+            print ("Onske nr " + str(onske_nr) + ": " + onske)
+            onske_nr += 1
+        valgt_nr = int(input("Hvilken gave vil du gi? "))
+        beskrivelse = self._onskeliste.onske_oppfylles(valgt_nr)
+
+        ant_dager = self._juleferiekalender.hent_ant_dager()
+        slutt_dag = (24+ant_dager)
+        slutt_dato = str(slutt_dag) + ". desember"
+        if slutt_dag > 31:
+            slutt_dato = str(slutt_dag-31) + ". januar"
+
+        print("Juleferiekalenderen starter 25. desember og slutter " + slutt_dato)
+        foretrukket_dag = int(input("Oppgi dato (kun dag) du helst vil gi gaven: "))
+
+        self._juleferiekalender.ny_gave(beskrivelse, giver, foretrukket_dag)
+    def ny_dag(self):
+        if self._neste_dag < 31:
+            self._neste_dag += 1
+        else:
+            self._neste_dag = 1  
+        return self._juleferiekalender.hent_dagens_gave(self._neste_dag)
+
+
+
+def penger(fremkroninger,kronestykker):
+    return fremkroninger * 5 + kronestykker
+
+print(penger(2,3))
+
+def barnMedVoksen(alder1,alder2):
+    if alder1 < 18 and alder2 >= 18:
+        return True
+    elif alder1 >= 18 and alder2 < 18:
+        return True
+    else:
+        return False
+
+print(barnMedVoksen(18,5))
+print(barnMedVoksen(10,20))
+print(barnMedVoksen(20,30))
+
+def fyllTilTi(tallene:list):
+    if len(tallene) == 10:
+        return tallene
+    else:
+        difference = 10 - len(tallene)
+        for i in range(difference):
+            tallene.append(0)
+    return tallene
+
+print(fyllTilTi([1,5,3]))
+
+
+def nodeOppretelse():
+    listeStart = Node('c')
+    andreNode = Node('a')
+    tredjeNode = Node('b')
+    listeStart.settInn(andreNode)
+    andreNode.settInn(tredjeNode)
+    
+nodeOppretelse()
+
+def distribute_money(money, children):
+    # Check if it's impossible to give at least 1 dollar to each child
+    if money < children:
+        return -1
+
+    # Start by giving each child 1 dollar (minimum required)
+    remaining_money = money - children
+
+    # Calculate the maximum number of children who can receive exactly 8 dollars
+    max_eight_dollars = min(remaining_money // 7, children)  # Giving 7 more (8 total) to some children
+    remaining_money -= max_eight_dollars * 7
+    children -= max_eight_dollars
+
+    # Handle the case where remaining children must avoid receiving 4 dollars
+    if children == 0:
+        return max_eight_dollars
+    if remaining_money == 4 and children == 1:
+        return max_eight_dollars - 1  # Adjust to avoid exactly 4 for one child
+
+    return max_eight_dollars
+
+# Test cases
+print(distribute_money(20, 3))  # Output: 1
+print(distribute_money(25, 5))  # Output: 0
+print(distribute_money(30, 4))  # Output: 2
+
+class Hytte:
+    def __init__(self, navn, antallSenger, pris):
+        self._navn = navn
+        self._antallSenger = antallSenger
+        self._pris = pris
+    def hentNavn(self):
+        return self._navn
+    def totPris(self, antallPersoner):
+        return self._pris * antallPersoner
+    def sjekkPlass(self, antallPersoner):
+        return self._antallSenger >= antallPersoner
+    def __str__(self):
+        return f'Hei!\nHytta "{self._navn}" består av {self._antallSenger}\nog det koster {self._pris} per seng'
+    def __eq__(self, value):
+        return self._navn == value._navn 
+    
+class Tur:
+    def __init__(self, listerMedHytter, beskrivelse):
+        self._listerMedHytter = listerMedHytter
+        self._beskrivelse = beskrivelse
+    def skrivTur(self):
+        print(self._beskrivelse)
+        print()
+        print('informasjon om hver hytte på denne turen:')
+        print()
+        for hytta in self._listerMedHytter:
+            print(str(hytta))
+            print()
+    def sjekkPrissPlass(self, antallPersonner, maskbeløp):
+        turenPrisen = 0
+        for hytta in self._listerMedHytter:
+            turenPrisen += hytta.totPris(antallPersonner)
+            if not hytta.sjekkPlass(antallPersonner):
+                return False
+        return maskbeløp > turenPrisen
+    def hentAntallHyterr(self):
+        return len(self._listerMedHytter)
+    
+class Turplanlegger:
+    def __init__(self, dataForHytter, dataforTuren):
+        self._ordbokHytter = self._hytterFrafil(dataForHytter)
+        self._turerListen = self._turerFraFil(dataforTuren)
+    def _hytterFrafil(self, filnavn):
+        ordbok = {}
+        fil = open(filnavn)
+        for linje in fil:
+            delene = linje.strip().split()
+            ordbok[delene[0]] = Hytte(delene[0], delene[1], delene[2])
+        fil.close()
+        return ordbok
+
+    def _turerFraFil(self, filnavn):
+        fil = open(filnavn)
+        turer = []
+        linje = fil.readline().strip()
+        while linje != "" :
+            linje2 = fil.readline()
+            hyttenavn = linje2.split()
+            hytteliste = []	
+            for ettNavn in hyttenavn :	
+                hytteliste.append(self._hytter[ettNavn])
+            turer.append(Tur(hytteliste, linje))	
+            linje = fil.readline().strip()
+        fil.close()
+        return turer			
+
+    def finnTurer(self, antallPersoner, maskBeløp, maksAntallDger):
+        liste = []
+        for turen in self._turerListen:
+            if turen.sjekkPrissPlass(antallPersoner, maskBeløp):
+                if maksAntallDger >= len(turen.hentAntallHyterr()):
+                    liste.append(turen)
+        for tur in liste:
+            tur.skrivtur()
+            
+            
+turen = Turplanlegger('hytter.txt', 'turer.txt')
+turen.finnTurer(7, 7000, 5)
+'''
+def ring(i, list):
+    while list[i] != -1:
+        i = list[i]
+    return i
+
+def gyldig(liste):
+    for start in range(len(liste)):
+        i = start
+        while liste[i] != -1:
+            i = liste[i]
+            if i == start:
+                return False
+    return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+            
+        
+
+
+
+
+
+       
+
+    
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    
+
+    
+
+
+
+    
+
+
+
+
+    
+
+
+    
+    
+
+      
+
+
+
+
+
+    
+
+
+
+
+
+    
+            
+
+
+
+
+
+
+
+
+
+            
+
+
+    
+
+
+
+
+          
+
+
+
+
+
+
+
+
+           
+
+
+
+
+             
+         
+
+
+
+
+
+
+
+
+
+        
+    
+    
+    
+
+
+
+
+
+
+        
+
+
+
+
+        
+
+
+
+
+    
+
+
+
+
+
+
+    
+    
+        
+   
+
+	
+
+
+    
+        
+                
+    
+
+
+
+
+
+        
+
+        
+
+        
+        
+
+
+    
+                
+            
+            
+            
+
+
+
+
 
         
 

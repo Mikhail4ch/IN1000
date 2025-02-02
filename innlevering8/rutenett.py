@@ -12,10 +12,10 @@ class Rutenett:
 #metoden lager antall kolonner eller lengden på listen 'liste' ved å bruke
 #instansvariablen self._ant_kolonner og returnere 'liste' til slutt
     def _lag_tom_rad (self):
-            liste = []
-            for i in range(self._ant_kolonner):
-                liste.append(None)
-            return liste
+        liste = []
+        for i in range(self._ant_kolonner):
+            liste.append(None)
+        return liste
 #metoden bruker instansvariablen self._ant_rader for å lage listen med
 #antall lister som passer til antall rader av rutenett, også for å lage
 #tomt rutenett kaller det _lag_tom_rad metoden for å 'fylle hver nyopprettede liste
@@ -36,7 +36,7 @@ class Rutenett:
          for raden_index in range(self._ant_rader):
               for kolonnen_index in range(self._ant_kolonner):
                    celle = self.lag_celle()
-                   tall = randint(0,2)
+                   tall = randint(0,5)
                    if tall ==0:
                          celle.sett_levende()
                    self._rutenett[raden_index][kolonnen_index] = celle
