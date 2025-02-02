@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "GameOfLife",
+            "request": "launch",
+            "mainClass": "GameOfLife",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
             "name": "TestCelle",
             "request": "launch",
             "mainClass": "TestCelle",

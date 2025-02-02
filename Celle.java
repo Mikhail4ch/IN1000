@@ -48,7 +48,6 @@ public class Celle{
     }
 
     public void oppdaterStatus(){
-        this.tellLevendeNaboer();
         if(this.erLevende()){
             if(this.antLevendeNaboer == 2 || this.antLevendeNaboer == 3){
                 this.settLevende();

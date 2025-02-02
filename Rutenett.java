@@ -45,31 +45,48 @@ public class Rutenett {
     }
     
     public void settNaboer(int rad, int kolonne) {
-        if (this.hentCelle(rad, kolonne) != null) {
-            Celle celle = this.hentCelle(rad, kolonne);
-            if (celle == null) {
-                System.out.println("Denne cellen finnes ikke");
-                return;
-            } else {
-                int[][] naboKoordinater = {
-                    {-1, -1}, {-1, 0}, {-1, 1},
-                    {0, -1}, {0, 1}, {1, -1},
-                    {1, 0}, {1, 1}
-                };
-                for (int[] nabo : naboKoordinater) {
-                    int naboRad = rad + nabo[0];
-                    int naboKolonne = kolonne + nabo[1];
-                    
-                    Celle naboCelle = hentCelle(naboRad, naboKolonne);
-                    if (naboCelle != null) {
-                        celle.leggTilNabo(naboCelle);
-                    }
+        Celle celle = this.hentCelle(rad, kolonne);
+        if (celle == null) {
+            System.out.println("Denne cellen finnes ikke");
+            return;
+        } else {
+            int[][] naboKoordinater = {
+                {-1, -1}, {-1, 0}, {-1, 1},
+                {0, -1}, {0, 1}, {1, -1},
+                {1, 0}, {1, 1}
+            };
+            for (int[] nabo : naboKoordinater) {
+                int naboRad = rad + nabo[0];
+                int naboKolonne = kolonne + nabo[1];
+                
+                Celle naboCelle = hentCelle(naboRad, naboKolonne);
+                if (naboCelle != null) {
+                    celle.leggTilNabo(naboCelle);
                 }
             }
         }
     }
 
-    
+    public void kobleAlleCeller () {
+        for (int i = 0; i < this.antRader; i++) { 
+            for (int k = 0; k < this.antKolonner; k++) { 
+                this.settNaboer(i, k);
+            }
+        }
+    }
+
+    public int antallLevende () {
+        int antall = 0;
+        for (int i = 0; i < this.antRader; i++) { 
+            for (int k = 0; k < this.antKolonner; k++) { 
+                Celle celle = this.hentCelle(i, k);
+                if (celle != null && celle.erLevende()) {
+                    antall++;
+                }
+            }
+        }
+        return antall;
+    }
 }
 
 
