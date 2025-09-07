@@ -6,6 +6,678 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Solution",
+            "request": "launch",
+            "mainClass": "Solution",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "PanelBottomButtonLabel",
+            "request": "launch",
+            "mainClass": "PanelBottomButtonLabel",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "PanelAsCentralComponent",
+            "request": "launch",
+            "mainClass": "PanelAsCentralComponent",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "TestTallmonitor",
+            "request": "launch",
+            "mainClass": "TestTallmonitor",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "hovedP",
+            "request": "launch",
+            "mainClass": "hovedP",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "SammenlignResultater",
+            "request": "launch",
+            "mainClass": "SammenlignResultater",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "SammenlignKatt",
+            "request": "launch",
+            "mainClass": "SammenlignKatt",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "LikeStrenger",
+            "request": "launch",
+            "mainClass": "LikeStrenger",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "FigurTest",
+            "request": "launch",
+            "mainClass": "FigurTest",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Bygninger",
+            "request": "launch",
+            "mainClass": "Bygninger",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "KoProgram",
+            "request": "launch",
+            "mainClass": "KoProgram",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Telefonbok",
+            "request": "launch",
+            "mainClass": "Telefonbok",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "TestBaathus",
+            "request": "launch",
+            "mainClass": "TestBaathus",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "hashMap",
+            "request": "launch",
+            "mainClass": "hashMap",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Bytte",
+            "request": "launch",
+            "mainClass": "Bytte",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "bytte",
+            "request": "launch",
+            "mainClass": "bytte",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Handletur",
+            "request": "launch",
+            "mainClass": "Handletur",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Lokker",
+            "request": "launch",
+            "mainClass": "Lokker",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Heltallsarray",
+            "request": "launch",
+            "mainClass": "Heltallsarray",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "MindreStorre",
+            "request": "launch",
+            "mainClass": "MindreStorre",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Sammenlign",
+            "request": "launch",
+            "mainClass": "Sammenlign",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "SkattRuritania",
+            "request": "launch",
+            "mainClass": "SkattRuritania",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "SumHeltall",
+            "request": "launch",
+            "mainClass": "SumHeltall",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Testprogram",
+            "request": "launch",
+            "mainClass": "Testprogram",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "hoved",
+            "request": "launch",
+            "mainClass": "hoved",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "SumArray",
+            "request": "launch",
+            "mainClass": "SumArray",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Gui",
+            "request": "launch",
+            "mainClass": "Gui",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "MainNettbutikk",
+            "request": "launch",
+            "mainClass": "MainNettbutikk",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "ShoppingListAppTo",
+            "request": "launch",
+            "mainClass": "ShoppingListAppTo",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "ShoppingListApp",
+            "request": "launch",
+            "mainClass": "ShoppingListApp",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "GUI",
+            "request": "launch",
+            "mainClass": "GUI",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "GuiInterface",
+            "request": "launch",
+            "mainClass": "GuiInterface",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "LabyrintGUI",
+            "request": "launch",
+            "mainClass": "LabyrintGUI",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Innlevering6",
+            "request": "launch",
+            "mainClass": "Innlevering6",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "GrafiskInterface",
+            "request": "launch",
+            "mainClass": "GrafiskInterface",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "EnkeltRutenett",
+            "request": "launch",
+            "mainClass": "EnkeltRutenett",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "AvisoverskriftPubliserer",
+            "request": "launch",
+            "mainClass": "AvisoverskriftPubliserer",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "TreBegre",
+            "request": "launch",
+            "mainClass": "TreBegre",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "spill",
+            "request": "launch",
+            "mainClass": "spill",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "FilVelgerGUI",
+            "request": "launch",
+            "mainClass": "FilVelgerGUI",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Fargeendring",
+            "request": "launch",
+            "mainClass": "Fargeendring",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "endrerOpp",
+            "request": "launch",
+            "mainClass": "endrerOpp",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Klokke",
+            "request": "launch",
+            "mainClass": "Klokke",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Hilsevindu",
+            "request": "launch",
+            "mainClass": "Hilsevindu",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "HilseKnapp",
+            "request": "launch",
+            "mainClass": "HilseKnapp",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "AdvancedGUIExample",
+            "request": "launch",
+            "mainClass": "AdvancedGUIExample",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "FullGUIExample",
+            "request": "launch",
+            "mainClass": "FullGUIExample",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "TestPerson",
+            "request": "launch",
+            "mainClass": "TestPerson",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "TestEnkelListe",
+            "request": "launch",
+            "mainClass": "TestEnkelListe",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "SkrivUtArrayIterativt",
+            "request": "launch",
+            "mainClass": "SkrivUtArrayIterativt",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Fakultet1",
+            "request": "launch",
+            "mainClass": "Fakultet1",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "JavaSteps",
+            "request": "launch",
+            "mainClass": "JavaSteps",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "hamburgerBar",
+            "request": "launch",
+            "mainClass": "hamburgerBar",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "AksjemarkedMonitor",
+            "request": "launch",
+            "mainClass": "AksjemarkedMonitor",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "KjorTacoTruck",
+            "request": "launch",
+            "mainClass": "KjorTacoTruck",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Sykehus",
+            "request": "launch",
+            "mainClass": "Sykehus",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "MainProgram",
+            "request": "launch",
+            "mainClass": "MainProgram",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Minst",
+            "request": "launch",
+            "mainClass": "Minst",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "AvbrytTraaden",
+            "request": "launch",
+            "mainClass": "AvbrytTraaden",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "NteTall",
+            "request": "launch",
+            "mainClass": "NteTall",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "hovedprogram",
+            "request": "launch",
+            "mainClass": "hovedprogram",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Legesystem",
+            "request": "launch",
+            "mainClass": "Legesystem",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Stoppeklokke2",
+            "request": "launch",
+            "mainClass": "Stoppeklokke2",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Stoppeklokke1",
+            "request": "launch",
+            "mainClass": "Stoppeklokke1",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "StørstAv3",
+            "request": "launch",
+            "mainClass": "StørstAv3",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Dyrehage",
+            "request": "launch",
+            "mainClass": "Dyrehage",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "TestPrioritetskø",
+            "request": "launch",
+            "mainClass": "TestPrioritetskø",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "TestIndeksertListe",
+            "request": "launch",
+            "mainClass": "TestIndeksertListe",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "TestKø",
+            "request": "launch",
+            "mainClass": "TestKø",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "TestStabel",
+            "request": "launch",
+            "mainClass": "TestStabel",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "CDSamling",
+            "request": "launch",
+            "mainClass": "CDSamling",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "TestButikk",
+            "request": "launch",
+            "mainClass": "TestButikk",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "katter",
+            "request": "launch",
+            "mainClass": "katter",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Parkeringshus",
+            "request": "launch",
+            "mainClass": "Parkeringshus",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Hovedprogram",
+            "request": "launch",
+            "mainClass": "Hovedprogram",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "TestBeholder",
+            "request": "launch",
+            "mainClass": "TestBeholder",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "FeilTest",
+            "request": "launch",
+            "mainClass": "FeilTest",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "TestBokhylle",
+            "request": "launch",
+            "mainClass": "TestBokhylle",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "TestKvadratStabel",
+            "request": "launch",
+            "mainClass": "TestKvadratStabel",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Handling",
+            "request": "launch",
+            "mainClass": "Handling",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "PixelArtCat",
+            "request": "launch",
+            "mainClass": "PixelArtCat",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Lenkeliste",
+            "request": "launch",
+            "mainClass": "Lenkeliste",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Node",
+            "request": "launch",
+            "mainClass": "Node",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "SinglyLinkedList",
+            "request": "launch",
+            "mainClass": "SinglyLinkedList",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Næringskjede",
+            "request": "launch",
+            "mainClass": "Næringskjede",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Integrasjonstest",
+            "request": "launch",
+            "mainClass": "Integrasjonstest",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "TestResepter",
+            "request": "launch",
+            "mainClass": "TestResepter",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "TestLegemiddel",
+            "request": "launch",
+            "mainClass": "TestLegemiddel",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "VehicleSystem",
+            "request": "launch",
+            "mainClass": "VehicleSystem",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "PaymentSystem",
+            "request": "launch",
+            "mainClass": "PaymentSystem",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Vei",
+            "request": "launch",
+            "mainClass": "Vei",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "PaymentProcessor",
+            "request": "launch",
+            "mainClass": "PaymentProcessor",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "Eclipse",
+            "request": "launch",
+            "mainClass": "Eclipse",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "TestVerden",
+            "request": "launch",
+            "mainClass": "TestVerden",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "TestRutenett",
+            "request": "launch",
+            "mainClass": "TestRutenett",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
+            "name": "hi",
+            "request": "launch",
+            "mainClass": "hi",
+            "projectName": "IN1000_775b8a6d"
+        },
+        {
+            "type": "java",
             "name": "GameOfLife",
             "request": "launch",
             "mainClass": "GameOfLife",

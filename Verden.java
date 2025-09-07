@@ -1,8 +1,8 @@
 public class Verden {
-    private int antallRader;
-    private int antallKolonner;
-    private int genNr;
-    private Rutenett rutenett;
+    public int antallRader;
+    public int antallKolonner;
+    public int genNr;
+    public Rutenett rutenett;
 
     public Verden(int antallRader, int antallKolonner) {
         this.antallRader = antallRader;
@@ -20,15 +20,15 @@ public class Verden {
     }
 
     public void oppdatering () {
-        for (int i = 0; i < this.antallRader; i++) { 
+        for (int r = 0; r < this.antallRader; r++) { 
             for (int k = 0; k < this.antallKolonner; k++) { 
-                Celle celle = this.rutenett.hentCelle(i, k);
+                Celle celle = this.rutenett.hentCelle(r, k);
                 celle.tellLevendeNaboer();
             }
         }
-        for (int i = 0; i < this.antallRader; i++) { 
+        for (int r = 0; r < this.antallRader; r++) { 
             for (int k = 0; k < this.antallKolonner; k++) { 
-                Celle celle = this.rutenett.hentCelle(i, k);
+                Celle celle = this.rutenett.hentCelle(r, k);
                 celle.oppdaterStatus();
             }
         }

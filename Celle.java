@@ -1,8 +1,8 @@
 public class Celle{
-    private Boolean status;
-    private Celle naboer[];
-    private int antNaboer;
-    private int antLevendeNaboer;
+    public boolean status;
+    public Celle naboer[];
+    public int antNaboer;
+    public int antLevendeNaboer;
 
     public Celle(){
         this.status = false;
@@ -24,39 +24,34 @@ public class Celle{
     }
 
     public char hentStatusTegn(){
-        if(this.status) {
-            return 'O';
-        } else {
-            return '.';
-        }
+        return this.status ? 'O' : '.';
     }
         
     public void leggTilNabo(Celle nabo){
         if(this.antNaboer < this.naboer.length){
-            naboer[this.antNaboer] = nabo;
+            this.naboer[this.antNaboer] = nabo;
             this.antNaboer++;
-        } else { System.out.println("full of neibhours");}   
+        } else { System.out.println("full av naboer");}   
     }
 
     public void tellLevendeNaboer(){
         this.antLevendeNaboer = 0;
-        for(int i = 0; i < this.antNaboer; i++){
+        for(int i = 0; i < this.naboer.length; i++){
             if(this.naboer[i] != null && this.naboer[i].erLevende()){
                 this.antLevendeNaboer++;
             }
         }
     }
 
-    public void oppdaterStatus(){
-        if(this.erLevende()){
-            if(this.antLevendeNaboer == 2 || this.antLevendeNaboer == 3){
-                this.settLevende();
-            } else { this.settDød(); }
-
-        } else{ 
-            if(this.antLevendeNaboer == 3){
-                this.settLevende();
-            } else{ this.settDød();}
+    public void oppdaterStatus() {
+        if (this.erLevende()) {
+            if (this.antLevendeNaboer < 2 || this.antLevendeNaboer > 3) {
+                this.settDød(); 
+            }
+        } else { 
+            if (this.antLevendeNaboer == 3) {
+                this.settLevende(); 
+            }
         }
     }
 }
