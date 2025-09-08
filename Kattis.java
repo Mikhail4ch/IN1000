@@ -243,7 +243,7 @@ class Main {
         System.out.print(out.toString());
     }
 }
-*/
+
 import java.util.*;
 
 
@@ -283,5 +283,229 @@ class Main{
         int[] result = findIndices(str1, str2);
 
         System.out.println(Arrays.toString(result));
+    }
+}
+
+
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Collections;
+
+class Node{
+    Node left;
+    Node right;
+    int value;
+    Node(int v){
+        value = v;
+    }
+    public int getValue(){
+        return value;
+    }
+}
+
+class Set{
+    int size;
+    List<Node> tree = new ArrayList<>();
+    Node root;
+
+    public Node Insert (Node node, int x){
+        if(node==null){
+            node = new Node(x);
+            size++;
+        } else if(x<node.getValue()){
+            root.left = Insert(node.left,x);
+        } else if(x>node.getValue()){
+            root.right = Insert(node.right,x);
+        }
+        tree.add(node);
+        size++;
+        return node;
+    }
+
+    public int size(){
+        return size;
+    }
+
+    public boolean contains(Node node, int x){
+        if (node == null) {
+            return false;
+        } else if (node.getValue() == x) {
+            return true;
+        } else if (x < node.getValue()) {
+            return contains(node.left, x);
+        } else {
+            return contains(node.right, x);
+        }
+    }
+
+
+    public Node remove(Node node, int x){
+        if(node==null){
+            return null;
+        }
+        if(x<node.getValue()){
+            node.left = remove(node.left,x);
+        }
+        if(x>node.getValue()){
+            node.right = remove(node.right,x);
+        }
+        if (node.left == null){
+            return node.right;
+        }
+        if (node.right == null){
+            return node.left;
+        }
+        Node y = Collections.sort(node.right.getValue());
+        node.value = y.getValue();
+        node.right = remove(node.right,y.getValue());
+        return node;
+    }
+}
+
+class Main{
+    public static void main(String[] args){
+
+    }
+}
+*/
+
+import java.io.*;
+
+class Main {
+
+    static class BSTSet {
+        static final class Node {
+            int value;
+            Node left, right;
+            Node(int v) { this.value = v; }
+        }
+
+        private Node root;
+        private int size;
+
+        public int size(){
+            return size;
+        }
+
+        public boolean contains(int x) {
+            Node currentNode = root;
+            while (currentNode != null) {
+                if (x < currentNode.value) {
+                    currentNode = currentNode.left;
+                }
+                else if (x > currentNode.value) {
+                    currentNode = currentNode.right;
+                }
+                else return true;
+            }
+            return false;
+        }
+
+        public boolean insert(int x) {
+            if (root == null) {
+                root = new Node(x);
+                size++;
+                return true;
+            }
+            Node current = root;
+            Node parent = null;
+            while (current != null) {
+                parent = current;
+                if (x < current.value) {
+                    current = current.left;
+                }
+                else if (x > current.value) {
+                    current = current.right;
+                }
+                else {
+                    return false; 
+                }
+            }
+            if (x < parent.value) {
+                parent.left = new Node(x);
+            } else {
+                parent.right = new Node(x);
+            }
+            size++;
+            return true;
+        }
+
+        public boolean remove(int x) {
+            Node current = root; 
+            Node parent = null;
+
+            while (current != null && current.value != x) {
+                parent = current;
+                if (x < current.value) {
+                    current = current.left;
+                } else {
+                    current = current.right;
+                }
+            }
+            if (current == null) {
+                return false;
+            } 
+            if (current.left != null && current.right != null) {
+                Node successorParent = current;
+                Node successor = current.right;
+                while (successor.left != null) {
+                    successorParent = successor;
+                    successor = successor.left;
+                }
+                current.value = successor.value;    
+                parent = successorParent;
+                current = successor;
+            }
+            Node child;
+            if(current.left != null){
+                child = current.left;
+            } else{
+                child = current.right;
+            }
+
+            if (parent == null) {
+                root = child;
+            } else if (parent.left == current) {
+                parent.left = child;
+            } else {
+                parent.right = child;
+            }
+            size--;
+            return true;
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder output = new StringBuilder();
+
+        BSTSet set = new BSTSet();
+
+        String line = input.readLine();
+        if (line == null) return;
+        int N = Integer.parseInt(line.trim());
+
+        for (int i = 0; i < N; i++) {
+            line = input.readLine();
+           
+            String[] parts = line.trim().split("\\s+");
+            String op = parts[0];
+
+            if (op.equals("size")) {
+                output.append(set.size()).append('\n');
+            } else {
+                int x = Integer.parseInt(parts[1]);
+                if (op.equals("contains")) {
+                    output.append(set.contains(x)).append('\n');
+                } else if (op.equals("insert")) {
+                    set.insert(x);
+                } else if (op.equals("remove")) {
+                    set.remove(x);
+                }
+            }
+        }
+        System.out.print(output.toString());
     }
 }
